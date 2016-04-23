@@ -1,6 +1,5 @@
 <launch>
-    <include file="$(dlib4puppeteering)/launch/camera.launch"/>
-    <!-- <node name="" pkg="dlib4puppeteering" type="tracker_node" output="screen">
-        <param name="show_preview" value="true"/>
-    </node> -->
+    <include file="$(find dlib4puppeteering)/launch/camera.launch"/>
+    <node name="dlib4puppeteering" pkg="dlib4puppeteering" type="dlib4puppeteering" output="screen">
+    </node>
 </launch>

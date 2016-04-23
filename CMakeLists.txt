@@ -7,7 +7,7 @@ project(dlib4puppeteering)
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
-  message_generation
+  # message_generation
   roscpp
   sensor_msgs
   std_msgs
@@ -54,11 +54,11 @@ find_package(OpenCV REQUIRED)
 #   Message1.msg
 #   Message2.msg
 # )
-add_message_files(
-  FILES
-  facebox.msg
-  faces.msg
-)
+# add_message_files(
+#   FILES
+#   facebox.msg
+#   faces.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -80,11 +80,11 @@ add_message_files(
 #   sensor_msgs#   std_msgs
 # )
 
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-  geometry_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+#   geometry_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -137,6 +137,8 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
+include(3rd_party/dlib/cmake)
+
 ## Declare a C++ library
 # add_library(dlib4puppeteering
 #   src/${PROJECT_NAME}/dlib4puppeteering.cpp
@@ -149,7 +151,7 @@ include_directories(
 
 ## Declare a C++ executable
 # add_executable(dlib4puppeteering_node src/dlib4puppeteering_node.cpp)
-#---------add_executable(tracker_node src/tracker.cpp)
+add_executable(dlib4puppeteering src/dlib4puppeteering.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -159,8 +161,9 @@ include_directories(
 # target_link_libraries(dlib4puppeteering_node
 #   ${catkin_LIBRARIES}
 # )
-#--------target_link_libraries(tracker_node ${catkin_LIBRARIES})
-#-------------target_link_libraries(tracker_node ${OpenCV_LIBS})
+target_link_libraries(dlib4puppeteering ${catkin_LIBRARIES})
+target_link_libraries(dlib4puppeteering dlib ${OpenCV_LIBS})
+
 
 #############
 ## Install ##
